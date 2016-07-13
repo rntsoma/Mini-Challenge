@@ -199,7 +199,8 @@
                     </view>
                     <connections>
                         <outlet property="lampSwitch" destination="Kae-gA-JbY" id="U3W-7Z-LDa"/>
-                        <outlet property="temperatureLabel" destination="RMK-bg-xv8" id="XBD-cg-nH2"/>
+                        <outlet property="temperatureImage" destination="fEm-zG-4xh" id="XIU-tT-Suc"/>
+                        <outlet property="temperatureLabel" destination="RMK-bg-xv8" id="9uf-Mc-uZA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
