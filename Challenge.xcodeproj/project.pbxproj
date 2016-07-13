@@ -14,6 +14,8 @@
 		7F3FC5AE1D352BDD006485EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FC5AC1D352BDD006485EC /* Main.storyboard */; };
 		7F3FC5B01D352BDD006485EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FC5AF1D352BDD006485EC /* Assets.xcassets */; };
 		7F3FC5B31D352BDD006485EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FC5B11D352BDD006485EC /* LaunchScreen.storyboard */; };
+		8803A48A1D358ADC00EE2EB5 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803A4891D358ADC00EE2EB5 /* Hero.swift */; };
+		8803A48C1D3598E100EE2EB5 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803A48B1D3598E100EE2EB5 /* Enemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		7F3FC5AF1D352BDD006485EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F3FC5B21D352BDD006485EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F3FC5B41D352BDD006485EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8803A4891D358ADC00EE2EB5 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		8803A48B1D3598E100EE2EB5 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 				7F3FC5A41D352BDD006485EC /* AppDelegate.swift */,
 				7F3FC5A61D352BDD006485EC /* GameScene.sks */,
 				7F3FC5A81D352BDD006485EC /* GameScene.swift */,
+				8803A4891D358ADC00EE2EB5 /* Hero.swift */,
+				8803A48B1D3598E100EE2EB5 /* Enemy.swift */,
 				7F3FC5AA1D352BDD006485EC /* GameViewController.swift */,
 				7F3FC5AC1D352BDD006485EC /* Main.storyboard */,
 				7F3FC5AF1D352BDD006485EC /* Assets.xcassets */,
@@ -143,8 +149,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F3FC5A91D352BDD006485EC /* GameScene.swift in Sources */,
+				8803A48C1D3598E100EE2EB5 /* Enemy.swift in Sources */,
 				7F3FC5AB1D352BDD006485EC /* GameViewController.swift in Sources */,
 				7F3FC5A51D352BDD006485EC /* AppDelegate.swift in Sources */,
+				8803A48A1D358ADC00EE2EB5 /* Hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +300,7 @@
 				7F3FC5B91D352BDE006485EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
