@@ -19,10 +19,20 @@ class MainViewController:UIViewController{
         self.temperatureImage.userInteractionEnabled=true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("fetchTemperature"))
         self.temperatureImage.addGestureRecognizer(tapGestureRecognizer)
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("fetchLampState"), userInfo: nil, repeats: true)
     }
     
     func fetchTemperature() {
-        print("22.3 °C")
+        /*
+        Notar abaixo que a funcao lamba pode ser passada como parametro fora do () da chamada da funcao.
+        Isto e um acucar sintatico para ficar mais legivel. O closure poderia ter sido passado dentro do (),
+        quando se passa apenas um parametro, como e o caso, ele pode ficar fora.
+        */
+        IOTService.sharedInstance.fetchTemperature() { (statuscode, error, homeModel) -> () in
+            print("Temperature ready to be displayed")
+            print("Temperature:  \(homeModel!.temperatureValue) °C")
+        }
+        print("Asked for temperature")
     }
     
     func switchLamp() {
@@ -30,7 +40,7 @@ class MainViewController:UIViewController{
     }
     
     func fetchLampState() {
-    
+//        print("Fetch lamp state")
     }
     
 }

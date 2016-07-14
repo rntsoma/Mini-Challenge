@@ -20,7 +20,19 @@ class IOTService {
     private init() {}
     
     func fetchTemperature(fetchedHomeTemperatureCallBack:(Int, NSError?, HomeModel?) -> ()){
-        
+        let temperatureURL = NSURL(string: "http://172.24.30.33:3000/temperature")
+        let session = NSURLSession.sharedSession()
+        let request = NSMutableURLRequest(URL: temperatureURL!)
+        request.HTTPMethod = "GET"
+        let dataTask = session.dataTaskWithRequest(
+            request,
+            completionHandler: {(data:NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            print ("Temperature arrived")
+            if let _ = data{
+                fetchedHomeTemperatureCallBack(200, nil, self.convertJsonToHomeControl(data!))
+            }
+        })
+        dataTask.resume()
     }
     
     func switchLamp(state:Bool,switchLampCallBack:(Int, NSError?) -> ()) {
