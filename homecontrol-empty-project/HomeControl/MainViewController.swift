@@ -25,22 +25,37 @@ class MainViewController:UIViewController{
     func fetchTemperature() {
         /*
         Notar abaixo que a funcao lamba pode ser passada como parametro fora do () da chamada da funcao.
-        Isto e um acucar sintatico para ficar mais legivel. O closure poderia ter sido passado dentro do (),
-        quando se passa apenas um parametro, como e o caso, ele pode ficar fora.
+        Se o closure for o ultimo parametro, ele pode ser passado fora dos ()
         */
         IOTService.sharedInstance.fetchTemperature() { (statuscode, error, homeModel) -> () in
             print("Temperature ready to be displayed")
             print("Temperature:  \(homeModel!.temperatureValue) °C")
+            self.temperatureLabel.text="Temp: \(round((homeModel!.temperatureValue*100)/100)) °C"
         }
         print("Asked for temperature")
     }
     
     func switchLamp() {
-        print("Changing state")
+        let oldState=self.lampSwitch.on
+        IOTService.sharedInstance.switchLamp(self.lampSwitch.on) { (statusCode:Int, error:NSError?) -> () in
+            if let _ = error{
+                self.lampSwitch.setOn(oldState, animated: true)
+            }
+            print("Lamp switch response")
+        }
+        print("Request switch lamp...")
     }
     
     func fetchLampState() {
 //        print("Fetch lamp state")
+        IOTService.sharedInstance.fetchLampState { (statusCode, error) -> () in
+            print(statusCode)
+            if(statusCode == 200){
+                self.lampSwitch.setOn(true, animated: true)
+            }else{
+                self.lampSwitch.setOn(false, animated: true)
+            }
+        }
     }
     
 }

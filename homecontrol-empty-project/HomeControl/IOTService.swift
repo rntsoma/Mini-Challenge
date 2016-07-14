@@ -29,18 +29,44 @@ class IOTService {
             completionHandler: {(data:NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             print ("Temperature arrived")
             if let _ = data{
-                fetchedHomeTemperatureCallBack(200, nil, self.convertJsonToHomeControl(data!))
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    fetchedHomeTemperatureCallBack(200, nil, self.convertJsonToHomeControl(data!))
+                })
             }
         })
         dataTask.resume()
     }
     
     func switchLamp(state:Bool,switchLampCallBack:(Int, NSError?) -> ()) {
-        
+        let lampURL = NSURL(string: "http://172.24.30.33:3000/switchlamp")
+        let request = NSMutableURLRequest(URL: lampURL!)
+        let requestBody = "{\"lampstate\":\(state)}"    //Swift converte 0 ou 1 a boolean
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPBody = requestBody.dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPMethod = "POST"
+        let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request){
+            (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+            print("Switch lamp response")
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                switchLampCallBack(200, nil)
+            })
+        }
+        dataTask.resume()
     }
     
     func fetchLampState(switchLampCallBack:(Int, NSError?) -> ()) {
-        
+        let lampStateURL = NSURL(string: "http://172.24.30.33:3000/switchlamp")
+        let request = NSMutableURLRequest(URL: lampStateURL!)
+        request.HTTPMethod = "GET"
+        let dataTask = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, erro:NSError?) -> Void in
+            if let _ = data{
+                let responseDown = response as! NSHTTPURLResponse
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    switchLampCallBack(responseDown.statusCode, nil)  
+                })
+            }
+        }
+        dataTask.resume()
     }
     
     func convertJsonToHomeControl(jsonObjectData:NSData) -> HomeModel? {
