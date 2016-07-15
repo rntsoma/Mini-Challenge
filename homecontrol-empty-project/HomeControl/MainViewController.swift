@@ -13,6 +13,7 @@ class MainViewController:UIViewController{
     @IBOutlet weak var lampSwitch: UISwitch!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var temperatureImage: UIImageView!
+    var homeInfoList = Array<HomeModel>()
     
     override func viewDidLoad() {
         self.lampSwitch.addTarget(self, action: Selector("switchLamp"), forControlEvents: UIControlEvents.ValueChanged)
@@ -31,6 +32,7 @@ class MainViewController:UIViewController{
             print("Temperature ready to be displayed")
             print("Temperature:  \(homeModel!.temperatureValue) °C")
             self.temperatureLabel.text="Temp: \(round((homeModel!.temperatureValue*100)/100)) °C"
+            self.homeInfoList.append(homeModel!)
         }
         print("Asked for temperature")
     }
@@ -56,6 +58,11 @@ class MainViewController:UIViewController{
                 self.lampSwitch.setOn(false, animated: true)
             }
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let historyTableViewController = segue.destinationViewController as! HistoryTableViewController
+        historyTableViewController.tableViewHomeInfoArray = self.homeInfoList
     }
     
 }
