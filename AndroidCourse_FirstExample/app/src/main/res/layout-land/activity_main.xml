@@ -39,7 +39,7 @@
             android:onClick="likedAction"
             android:layout_below="@id/text_id"
             android:layout_centerHorizontal="true"
-            android:text="Like"
+            android:text="@string/like"
             />
 
         <TextView

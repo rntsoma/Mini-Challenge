@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I Love Marshmallow"
+        android:text="@string/love_marshmallow"
         android:textSize="30dp"
         android:textColor="#ee32c0"
         />
@@ -30,12 +30,12 @@
         android:textColor="#ee32c0"
         android:id="@+id/button_id"
         android:onClick="likedAction"
-        android:text="Like"/>
+        android:text="@string/like"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0 Likes"
+        android:text="@string/label_name"
         android:textSize="20dp"
         android:id="@+id/label_id"
         android:layout_gravity="right"
