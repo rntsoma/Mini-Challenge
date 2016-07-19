@@ -12,14 +12,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
         Button button = (Button) findViewById(R.id.button_id);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 TextView label = (TextView) findViewById(R.id.label_id);
                 count++;
-                label.setText(count + " Likes");
+                label.setText(getString(R.string.label_name, count));
+                //label.setText(count + " Likes");
             }
         });
+*/
+    }
+
+    public void likedAction(View view){
+        TextView label = (TextView) findViewById(R.id.label_id);
+        count++;
+        label.setText(getString(R.string.label_name, count));
     }
 }
