@@ -45,6 +45,7 @@ public class NotificationIntentService extends IntentService {
     }
 
     private void showNotification(String str, int version){
+        /*Classe que controi notifications*/
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                 .setContentTitle("My Notification")
