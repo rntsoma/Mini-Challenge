@@ -1,6 +1,7 @@
 package androidcourse.venturus.org.br.androidcourse_firstexample;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         TextView label = (TextView) findViewById(R.id.label_id);
         count = myPrefs.getInt("count", 0);
         label.setText(getString(R.string.label_name, count));
+
+        Intent myIntent = new Intent(this, NotificationIntentService.class);
+        startService(myIntent);
     }
 
     public void likedAction(View view){
@@ -36,5 +40,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debug", "count: "+ count);
         editor.putInt("count", count);
         editor.apply();
+    }
+
+    public void performSegue(View view){
+        Intent myIntent = new Intent(this, SecondActivity.class);
+        myIntent.putExtra("num_likes", count);
+        startActivity(myIntent);
     }
 }

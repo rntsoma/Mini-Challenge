@@ -21,7 +21,9 @@
         android:layout_width="@dimen/marhsmallow_width"
         android:layout_height="@dimen/marhsmallow_height"
         android:layout_marginTop="30dp"
-        android:src="@drawable/marshmallow" />
+        android:src="@drawable/marshmallow"
+        android:onClick="performSegue"
+        />
 
     <Button
         android:layout_width="wrap_content"
