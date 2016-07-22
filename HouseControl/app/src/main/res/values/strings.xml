@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">House Control</string>
     <string name="action_settings">Settings</string>
+    <string name="status_luz_desligada">LUZ DESATIVADA</string>
+    <string name="status_luz_ligada">LUZ ATIVADA</string>
+    <string name="temperatura">Temperatura</string>
+    <string name="graus">30°</string>
 </resources>
