@@ -1,9 +1,12 @@
 #include <ESP8266WiFi.h>
 
-char ssid[] = "free_wifi";
-char pass[] = "12345qwe";
+//char ssid[] = "free_wifi";
+//char pass[] = "12345qwe";
+char ssid[] = "Workshop";
+char pass[]="vnt@tws#";
 
 void setupWifi();
+void blinkLed();
 
 int ledState = LOW;
 
@@ -15,11 +18,15 @@ void setup() {
   Serial.begin(115200);
   setupWifi();
   pinMode(0, OUTPUT);
+  pinMode(2, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  blinkLed();
+}
 
+void blinkLed(){
 // piscar led com bloqueio
 // delay() faz o processador esperar, gastando processamento a toa
 //  digitalWrite(0, LOW);
@@ -52,8 +59,10 @@ void setupWifi(){
   WiFi.begin(ssid, pass);
   while(WiFi.status() != WL_CONNECTED){
     delay(500);
+    digitalWrite(2, !digitalRead(2));
     Serial.print(".");
   }
+  digitalWrite(2, LOW);
   Serial.println("\nConectado ao WiFi!");
   Serial.print("Endereco IP: ");
   Serial.println(WiFi.localIP());
