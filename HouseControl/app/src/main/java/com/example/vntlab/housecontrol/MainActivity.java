@@ -1,5 +1,6 @@
 package com.example.vntlab.housecontrol;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         switchState();
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            updateActionBarSubtitle(false);
+        }
     }
 
     @Override
@@ -39,19 +47,19 @@ public class MainActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    ImageView myImage=(ImageView)findViewById(R.id.background_status_imagem);
+                if (isChecked) {
+                    ImageView myImage = (ImageView) findViewById(R.id.background_status_imagem);
                     myImage.setImageResource(R.drawable.bgon);
-                    TextView myText=(TextView)findViewById(R.id.status_luz_texto);
+                    TextView myText = (TextView) findViewById(R.id.status_luz_texto);
                     myText.setText(R.string.status_luz_ligada);
-                    ImageView myImage2=(ImageView)findViewById(R.id.status_lampada);
+                    ImageView myImage2 = (ImageView) findViewById(R.id.status_lampada);
                     myImage2.setImageResource(R.drawable.icon_luz_on);
-                }else{
-                    ImageView myImage=(ImageView)findViewById(R.id.background_status_imagem);
+                } else {
+                    ImageView myImage = (ImageView) findViewById(R.id.background_status_imagem);
                     myImage.setImageResource(R.drawable.bgoff);
-                    TextView myText=(TextView)findViewById(R.id.status_luz_texto);
+                    TextView myText = (TextView) findViewById(R.id.status_luz_texto);
                     myText.setText(R.string.status_luz_desligada);
-                    ImageView myImage2=(ImageView)findViewById(R.id.status_lampada);
+                    ImageView myImage2 = (ImageView) findViewById(R.id.status_lampada);
                     myImage2.setImageResource(R.drawable.icon_luz_off);
                 }
             }
@@ -67,9 +75,21 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent myIntent = new Intent(this, SettingsActivity.class);
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateActionBarSubtitle(final boolean connected){
+        if(getSupportActionBar() != null){
+            if(connected){
+                getSupportActionBar().setSubtitle(getString(R.string.conectado));
+            }else{
+                getSupportActionBar().setSubtitle(getString(R.string.desconectado));
+            }
+        }
     }
 }

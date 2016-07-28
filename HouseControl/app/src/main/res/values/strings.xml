@@ -5,4 +5,9 @@
     <string name="status_luz_ligada">LUZ ATIVADA</string>
     <string name="temperatura">Temperatura</string>
     <string name="graus">30°</string>
+    <string name="conectado">Conectado</string>
+    <string name="desconectado">Desconectado</string>
+    <string name="atualizacao_temp">Atualização: %s</string>
+    <string name="settings_connect">Conectar</string>
+    <string name="settings_disconnect">Desconectar</string>
 </resources>
